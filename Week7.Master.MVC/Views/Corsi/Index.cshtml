@@ -1,0 +1,35 @@
+﻿@model List<CorsoViewModel>
+
+<h1>Ecco la lista dei corsi:</h1>
+<br />
+<table class="table table-bordered">
+    <thead class="table table-dark">
+        <tr>
+            <th>Codice</th>
+            <th>Nome</th>
+            @*<th>Descrizione</th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CodiceCorso</td>
+                <td>@item.Nome</td>
+                @*<td>@item.Descrizione</td>*@
+                <th>
+                <a asp-controller="Corsi" asp-action="Details" asp-route-id="@item.CodiceCorso" class="btn btn-success">Visualizza Dattagli</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Totale:</th>
+            <th>@Model.Count</th>
+            @*<th></th>*@
+            <th></th>
+        </tr>
+    </tfoot>
+</table>

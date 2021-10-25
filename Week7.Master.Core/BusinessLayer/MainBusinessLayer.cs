@@ -26,18 +26,7 @@ namespace Week7.Master.Core.BusinessLayer
         }
 
 
-        public string EliminaCorso(string codiceCorsoDaEliminare)
-        {
-            var corsoEsistente = corsiRepo.GetByCode(codiceCorsoDaEliminare);
-            if (corsoEsistente == null)
-            {
-                return "Errore: Codice errato!";
-            }
-            corsiRepo.Delete(corsoEsistente);
-            return "Corso eliminato corretamente!";
-            //TODO vuoi cancellare corso anche se contiene i studenti? 
-
-        }
+       
 
         #region Funzionalita Corsi
 
@@ -73,6 +62,18 @@ namespace Week7.Master.Core.BusinessLayer
 
             corsiRepo.Update(corsoEsistente);
             return "Corso e stato modificato con successo!";
+        }
+        public string EliminaCorso(string codiceCorsoDaEliminare)
+        {
+            var corsoEsistente = corsiRepo.GetByCode(codiceCorsoDaEliminare);
+            if (corsoEsistente == null)
+            {
+                return "Errore: Codice errato!";
+            }
+            corsiRepo.Delete(corsoEsistente);
+            return "Corso eliminato corretamente!";
+            //TODO vuoi cancellare corso anche se contiene i studenti? 
+
         }
 
         #endregion
@@ -188,9 +189,61 @@ namespace Week7.Master.Core.BusinessLayer
             return "Docente eliminato correttamente!";
         }
 
+        #endregion
+
+        #region Funzionalita Lezioni
+
         public List<Lezione> GetAllLezioni()
         {
             return lezioniRepo.GetAll();
+        }
+
+        public string InserisciNuovaLezione(Lezione nuovaLezione)
+        {
+            var corso = corsiRepo.GetByCode(nuovaLezione.CorsoCodice);
+            if (corso == null)
+            {
+                return "Codice corso non esiste!";
+            }
+            var docente = docentiRepo.GetById(nuovaLezione.DocenteID);
+            if (docente == null)
+            {
+                return "Codice docente inesistente";
+            }
+            //Si possono eventualmente prevedere altri controlli ad esempio verifica che non esista già
+            //una lezione associata allo stesso docente lo stesso giorno..
+            //nuovaLezione.Corso = corso;
+            //nuovaLezione.Docente = docente; //aggiungere al reposiotory lezioni dove asegno tutto 
+            lezioniRepo.Add(nuovaLezione);
+            return "Aggiunta correttamente";
+        }
+
+        public string ModificaLezione(int idLezione, string aula)
+        {
+            var lezioneEsiste = lezioniRepo.GetById(idLezione);
+            if (lezioneEsiste == null)
+            {
+                return "Id non esiste!";
+            }
+            lezioneEsiste.Aula = aula;
+            lezioniRepo.Update(lezioneEsiste);
+            return "Aula modificata con successo!";
+        }
+
+        public string EliminaLezione(int lezioneDaEliminare)
+        {
+            var lezioneElimina = lezioniRepo.GetById(lezioneDaEliminare);
+            if (lezioneDaEliminare == 0)
+            {
+                return "Errore: ID errato! Oppure non esiste lezione con questo ID";
+            }
+            lezioniRepo.Delete(lezioneElimina);
+            return "Lezione eliminata corretamente!";
+        }
+
+        public List<Lezione> VisualizzaLezioneConCodiceCorso(string codiceCorso)
+        {
+            return lezioniRepo.GetByCorsoCodice(codiceCorso);
         }
 
         #endregion

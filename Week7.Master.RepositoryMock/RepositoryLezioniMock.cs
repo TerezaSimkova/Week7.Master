@@ -11,15 +11,38 @@ namespace Week7.Master.RepositoryMock
     public class RepositoryLezioniMock : IRepositoryLezioni
     {
 
-        public static List<Lezione> Lezioni = new List<Lezione>();
-        public Lezione Add(Lezione item)
+        public static List<Lezione> Lezioni = new List<Lezione>()
         {
-            throw new NotImplementedException();
+            new Lezione{LezioneID = 1, Aula = "A023", DataOraInizio = new DateTime(2021,12,11), Durata = 60, DocenteID = 1, CorsoCodice = "C-02"}
+        };
+
+        public Lezione Add(Lezione lezione)
+        {
+            if (Lezioni.Count() == 0)
+            {
+                lezione.LezioneID = 1;
+            }
+            else
+            {
+                lezione.LezioneID = Lezioni.Max(x => x.LezioneID) + 1;
+            }
+
+            var docente = RepositoryDocentiMock.Docenti.FirstOrDefault(d => d.ID == lezione.DocenteID);
+            lezione.Docente = docente;
+            var corso = RepositoryCorsiMock.Corsi.FirstOrDefault(c => c.CodiceCorso == lezione.CorsoCodice);
+            lezione.Corso = corso;
+
+            docente.Lezioni.Add(lezione);
+            corso.Lezioni.Add(lezione);
+
+            Lezioni.Add(lezione);
+            return lezione;
         }
 
-        public bool Delete(Lezione item)
+        public bool Delete(Lezione lezione)
         {
-            throw new NotImplementedException();
+            Lezioni.Remove(lezione);
+            return true;
         }
 
         public List<Lezione> GetAll()
@@ -27,14 +50,22 @@ namespace Week7.Master.RepositoryMock
             return Lezioni;
         }
 
-        public Lezione GetById(int id)
+        public List<Lezione> GetByCorsoCodice(string codiceCorso)
         {
-            throw new NotImplementedException();
+            List<Lezione> l = Lezioni.Where(c => c.CorsoCodice == codiceCorso).ToList();
+            return l;
         }
 
-        public Lezione Update(Lezione item)
+        public Lezione GetById(int id)
         {
-            throw new NotImplementedException();
+            return Lezioni.Find(l => l.LezioneID == id);
+        }
+
+        public Lezione Update(Lezione lezione)
+        {
+            var old = Lezioni.FirstOrDefault(l => l.LezioneID == lezione.LezioneID);
+            old.Aula = lezione.Aula;
+            return lezione;
         }
     }
 }

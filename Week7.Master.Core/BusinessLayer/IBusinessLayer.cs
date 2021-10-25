@@ -29,18 +29,27 @@ namespace Week7.Master.Core.BusinessLayer
         #region Funzionalita Studenti
 
         public List<Studente> GetAllStudenti();
-
         public string InserisciNuovoStudente(Studente nuovoStudente);
-
         public string ModificaStudente(int id, string nuovoEmail);
         public string EliminaStudente(int id);
-        public List<Studente>VisualizzaStudentiCorso(string scelta);
+        public List<Studente> VisualizzaStudentiCorso(string scelta);
+        #endregion
+
+        #region Funzionalita Docente
+
         public List<Docente> GetAllDocenti();
         public string InserisciNuovoDocente(Docente nuovoDocente);
         public string ModificaDocente(int id, string nome, string cognome, string email);
         public string EliminaDocente(int id);
-        public List<Lezione> GetAllLezioni();
+        #endregion
 
+        #region Funzioalit Lezini
+
+        public List<Lezione> GetAllLezioni();
+        public string InserisciNuovaLezione(Lezione nuovaLezione);
+        public string ModificaLezione(int idLezione, string aula);
+        public string EliminaLezione(int lezioneDaEliminare);
+        public List<Lezione> VisualizzaLezioneConCodiceCorso(string codiceCorso);
         #endregion
     }
 }

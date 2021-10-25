@@ -10,5 +10,6 @@ namespace Week7.Master.Core.InterfaceRepositories
     public interface IRepositoryLezioni : IRepository<Lezione>
     {
         public Lezione GetById(int id);
+        List<Lezione> GetByCorsoCodice(string codiceCorso);
     }
 }

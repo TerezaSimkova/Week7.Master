@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week7.Master", "Week7.Master\Week7.Master.csproj", "{9A40F119-21FE-4D03-B103-F25F8B62362B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Week7.Master", "Week7.Master\Week7.Master.csproj", "{9A40F119-21FE-4D03-B103-F25F8B62362B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week7.Master.Core", "Week7.Master.Core\Week7.Master.Core.csproj", "{D03CF340-76F8-4845-9360-D57F8430C2D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Week7.Master.Core", "Week7.Master.Core\Week7.Master.Core.csproj", "{D03CF340-76F8-4845-9360-D57F8430C2D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week7.Master.RepositoryMock", "Week7.Master.RepositoryMock\Week7.Master.RepositoryMock.csproj", "{96EDEF34-760C-4602-A411-D43F634DE808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Week7.Master.RepositoryMock", "Week7.Master.RepositoryMock\Week7.Master.RepositoryMock.csproj", "{96EDEF34-760C-4602-A411-D43F634DE808}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Week7.Master.RepositoryEF", "Week7.Master.RepositoryEF\Week7.Master.RepositoryEF.csproj", "{C4192072-B46E-4B69-8A21-576F5DA97842}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week7.Master.MVC", "Week7.Master.MVC\Week7.Master.MVC.csproj", "{23CDE27A-15E5-4AF3-97D5-1A854DAC78A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{96EDEF34-760C-4602-A411-D43F634DE808}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96EDEF34-760C-4602-A411-D43F634DE808}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96EDEF34-760C-4602-A411-D43F634DE808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4192072-B46E-4B69-8A21-576F5DA97842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4192072-B46E-4B69-8A21-576F5DA97842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4192072-B46E-4B69-8A21-576F5DA97842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4192072-B46E-4B69-8A21-576F5DA97842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23CDE27A-15E5-4AF3-97D5-1A854DAC78A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23CDE27A-15E5-4AF3-97D5-1A854DAC78A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23CDE27A-15E5-4AF3-97D5-1A854DAC78A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23CDE27A-15E5-4AF3-97D5-1A854DAC78A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

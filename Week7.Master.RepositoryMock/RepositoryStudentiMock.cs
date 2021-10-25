@@ -10,7 +10,10 @@ namespace Week7.Master.RepositoryMock
 {
     public class RepositoryStudentiMock : IRepositoryStudenti
     {
-        public static List<Studente> Studenti = new List<Studente>(); // lista vuota perche ce foreign key e quindi non la popolo
+        public static List<Studente> Studenti = new List<Studente>() // lista vuota perche ce foreign key e quindi non la popolo
+        {
+            new Studente{ID = 1, Nome = "Tereza", Cognome = "Simkova", DataDiNascita = new DateTime(1995,07,26), Email = "tere@gmail.com", TitoloStudio = "Diploma di Design"}
+        };
 
         public Studente Add(Studente studente)
         {

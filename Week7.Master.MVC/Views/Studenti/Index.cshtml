@@ -1,0 +1,41 @@
+﻿@*Studenti*@
+@model List<StudenteViewModel>
+
+<h1>Ecco la lista degli studenti:</h1>
+<br />
+<table class="table table-hover table-bordered">
+    <thead class="table table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            @*<th>E-mail</th>
+            <th>Data di nascita</th>
+            <th>Titolo di studio</th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Cognome</td>
+            @*<td>@item.Email</td>
+        <td>@item.DataDiNascita</td>
+        <td>@item.TitoloStudio</td>*@
+            <th>
+                <a asp-controller="Studenti" asp-action="Details" asp-route-id="@item.ID" class="btn btn-success">Dettagli Studente</a>
+            </th>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            @*<th></th>
+            <th></th>*@
+            <th></th>
+            <th>Numero degli studenti:</th>
+            <th>@Model.Count</th>
+        </tr>
+    </tfoot>
+</table>

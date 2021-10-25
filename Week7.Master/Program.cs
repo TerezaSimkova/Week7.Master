@@ -1,6 +1,7 @@
 ﻿using System;
 using Week7.Master.Core.BusinessLayer;
 using Week7.Master.Core.Entities;
+//using Week7.Master.RepositoryEF.Configurations.RepositoryEF;
 using Week7.Master.RepositoryMock;
 
 namespace Week7.Master
@@ -9,6 +10,7 @@ namespace Week7.Master
     {
         //accedo alle Repository ,creo un oggetto della classe IBusinessLayer , cosi posso connetermi ad repository, quelli finti ora
         private static readonly IBusinessLayer bl = new MainBusinessLayer(new RepositoryCorsiMock(), new RepositoryDocentiMock(), new RepositoryStudentiMock(), new RepositoryLezioniMock());
+       // private static readonly IBusinessLayer bl = new MainBusinessLayer(new RepositoryCorsiEF(), new RepositoryDocentiEF(), new RepositoryStudentiEF(), new RepositoryLezioniEF());
 
         static void Main(string[] args)
         {
@@ -99,16 +101,16 @@ namespace Week7.Master
                     VisualizzaLezioni();
                     break;
                 case 10:
-                    //InserisciNuovaLezione();
+                    InserisciNuovaLezione();
                     break;
                 case 11:
-                    //ModificaLezione();
+                    ModificaLezione();
                     break;
                 case 12:
-                    //EliminaLezione();
+                    EliminaLezione();
                     break;
                 case 13:
-                    //VisualizzaLezioneConCodiceCorso();
+                    VisualizzaLezioneConCodiceCorso();
                     break;
                 case 14:
                     //VisualizzaLezionePerIlNomeCorso();
@@ -132,6 +134,112 @@ namespace Week7.Master
                     return false;
             }
             return true;
+        }
+
+        private static void VisualizzaLezioneConCodiceCorso()
+        {
+            VisualizzaCorsi();
+            string codiceCorso = string.Empty;
+            do
+            {
+                Console.WriteLine("Scegli codice del corso per visualizzare le lezioni:");
+
+            } while (string.IsNullOrEmpty(codiceCorso));
+            var esito = bl.VisualizzaLezioneConCodiceCorso(codiceCorso);
+            Console.WriteLine(esito);
+        }
+
+        private static void EliminaLezione()
+        {
+            VisualizzaLezioni();
+            int lezioneDaEliminare;
+            do
+            {
+                Console.WriteLine("Quale Lezione vuoi eliminare?");
+
+            } while (!int.TryParse(Console.ReadLine(), out lezioneDaEliminare));
+
+            var esito = bl.EliminaLezione(lezioneDaEliminare);
+            Console.WriteLine(esito);
+        }
+
+        private static void ModificaLezione()
+        {
+            VisualizzaLezioni();
+
+            int IdLezione;
+            do
+            {
+                Console.WriteLine("Quale Lezione vuoi modificare? Inserisci il ID: ");
+
+            } while (!int.TryParse(Console.ReadLine(), out IdLezione));
+
+            String aula = String.Empty;
+            do
+            {
+                Console.WriteLine("Inserisci nuova Aula:");
+                aula = Console.ReadLine();
+
+            } while (String.IsNullOrEmpty(aula));
+
+            var esito = bl.ModificaLezione(IdLezione, aula);
+            Console.WriteLine(esito);
+        }
+
+        private static void InserisciNuovaLezione()
+        {
+            DateTime dt = new DateTime();
+            int durata;
+            String aula = String.Empty;
+
+            do
+            {
+                Console.WriteLine("Inserisci la data e ora del inizio lezione {MM/dd/yyyy hh:mm:ss tt}::");
+
+            } while (!DateTime.TryParse(Console.ReadLine(),out dt));
+           
+
+            do
+            {
+                Console.WriteLine("Inserisci durata:");
+
+            } while (!int.TryParse(Console.ReadLine(), out durata));
+
+            do
+            {
+                Console.WriteLine("Inserisci aula:");
+                aula = Console.ReadLine();
+
+            } while (String.IsNullOrEmpty(aula));
+
+            VisualizzaDocenti();
+            int idDocente;
+            do
+            {
+                Console.WriteLine("Inserisci ID del docente:");
+
+            } while (!int.TryParse(Console.ReadLine(), out idDocente));
+
+            VisualizzaCorsi();
+            String codiceCorso = String.Empty;
+            do
+            {
+                Console.WriteLine("Inserisci codice corso:");
+                codiceCorso = Console.ReadLine();
+
+            } while (String.IsNullOrEmpty(codiceCorso));
+
+            Lezione nuovaLezione = new Lezione()
+            {
+                DataOraInizio = dt,
+                Durata = durata,
+                Aula = aula,
+                DocenteID = idDocente,
+                CorsoCodice = codiceCorso
+            };
+
+            var esito = bl.InserisciNuovaLezione(nuovaLezione);
+            Console.WriteLine(esito);
         }
 
         private static void VisualizzaLezioni()
