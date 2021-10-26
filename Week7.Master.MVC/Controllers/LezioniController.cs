@@ -30,5 +30,65 @@ namespace Week7.Master.MVC.Controllers
 
             return View(lezioneViewModels);
         }
+        #region Create
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View(); //->torna form vuoto
+        }
+        [HttpPost]
+        public IActionResult Create(LezioneViewModel lezioneViewModel) //uso lo stesso nome perche in caso di inserimento va in coppia
+        {
+            if (ModelState.IsValid) //controllo
+            {
+                var lezione = lezioneViewModel.ToLezioni(); // ->converto in corso cosi lo posso connettere con BL 
+                BL.InserisciNuovaLezione(lezione);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(lezioneViewModel); //-> grazie questo se ce un errore mi memorizza i dati e da errore ,se non ce torna  il form vuoto
+        }
+        #endregion
+
+        #region Update
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var lezioni = BL.GetAllLezioni().Find(l => l.LezioneID == id);
+            var conversione = lezioni.ToLezioniViewModel();
+            return View(conversione);
+        }
+        [HttpPost]
+        public IActionResult Update(LezioneViewModel lezioneViewModel)
+        {
+            if (ModelState.IsValid) 
+            {
+                var lezione = lezioneViewModel.ToLezioni(); 
+                BL.ModificaLezione(lezione.LezioneID, lezione.Aula);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(lezioneViewModel); 
+        }
+        #endregion
+
+        #region Delete
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var lezioni = BL.GetAllLezioni().Find(l => l.LezioneID == id);
+            var conversione = lezioni.ToLezioniViewModel();
+            return View(conversione);
+        }
+        [HttpPost]
+        public IActionResult Delete(LezioneViewModel lezioneViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var lezione = lezioneViewModel.ToLezioni();
+                BL.EliminaLezione(lezione.LezioneID);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(lezioneViewModel);
+        }
+        #endregion
     }
 }

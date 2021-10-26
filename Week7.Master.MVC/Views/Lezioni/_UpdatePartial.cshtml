@@ -1,0 +1,19 @@
+﻿@*Update + create partial part lezione*@
+@model LezioneViewModel
+
+<div class="form-group">
+    <label asp-for="Aula"></label>
+    <input asp-for="Aula" class="form-control" />
+    <span asp-validation-for="Aula" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="DataOraInizio"></label>
+    <input asp-for="DataOraInizio" class="form-control" />
+    <span asp-validation-for="DataOraInizio" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Durata"></label>
+    <input asp-for="Durata" class="form-control" />
+    <span asp-validation-for="Durata" class="text-danger"></span>
+</div>
+

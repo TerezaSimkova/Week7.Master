@@ -1,0 +1,12 @@
+﻿@*Create studente*@
+@model StudenteViewModel
+
+<h1>Inserisci nuovo studente:</h1>
+<form method="post">
+
+    <partial name="_UpdatePartial" model="Model" />
+
+    <input type="submit" value="Salva" class="btn btn-warning" />
+    <input type="reset" value="Reset" class="btn btn-success" />
+    <a class="btn btn-primary" asp-controller="Corsi" asp-action="Index" role="button">Indietro</a>
+</form>

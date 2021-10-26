@@ -87,13 +87,13 @@ namespace Week7.Master.Core.BusinessLayer
         public string InserisciNuovoStudente(Studente nuovoStudente)
         {
             //controllo input
-            Corso corsoEsistente = corsiRepo.GetByCode(nuovoStudente.CorsoCodice);
-            if (corsoEsistente == null)
+            Studente studenteEsistente = studentiRepo.GetById(nuovoStudente.ID);
+            if (studenteEsistente == null)
             {
-                return "Errore: Codice sbagliato!";
+                studentiRepo.Add(nuovoStudente);
+                return "Studente aggiunto con successo!";               
             }
-            studentiRepo.Add(nuovoStudente);
-            return "Studente aggiunto con successo!";
+            return "Errore: Codice sbagliato!";
         }
 
         public string ModificaStudente(int id, string nuovoEmail)

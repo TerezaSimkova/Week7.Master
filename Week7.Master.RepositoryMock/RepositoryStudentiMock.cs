@@ -28,7 +28,6 @@ namespace Week7.Master.RepositoryMock
             //asoccio corso al studente
             var corso = RepositoryCorsiMock.Corsi.FirstOrDefault(c => c.CodiceCorso == studente.CorsoCodice);
             studente.Corso = corso;
-            corso.Studenti.Add(studente);
 
             Studenti.Add(studente);
             return studente;

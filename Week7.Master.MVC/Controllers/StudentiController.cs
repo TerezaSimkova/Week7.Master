@@ -39,5 +39,66 @@ namespace Week7.Master.MVC.Controllers
             var studenteViewModel = studenti.ToStudentiViewModel();
             return View(studenteViewModel);
         }
+
+        #region Create
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View(); //->torna form vuoto
+        }
+        [HttpPost]
+        public IActionResult Create(StudenteViewModel studenteViewModel) //uso lo stesso nome perche in caso di inserimento va in coppia
+        {
+            if (ModelState.IsValid) //controllo
+            {
+                var studente = studenteViewModel.ToStudenti(); // ->converto in corso cosi lo posso connettere con BL 
+                BL.InserisciNuovoStudente(studente);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(studenteViewModel); //-> grazie questo se ce un errore mi memorizza i dati e da errore ,se non ce torna  il form vuoto
+        }
+        #endregion
+
+        #region Update
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var studente = BL.GetAllStudenti().Find(s => s.ID == id);
+            var conversione = studente.ToStudentiViewModel();
+            return View(conversione);
+        }
+        [HttpPost]
+        public IActionResult Update(StudenteViewModel studenteViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var studente = studenteViewModel.ToStudenti();
+                BL.ModificaStudente(studente.ID,studente.Email);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(studenteViewModel);
+        }
+        #endregion
+
+        #region Delete
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var studente = BL.GetAllStudenti().Find(s => s.ID == id);
+            var conversione = studente.ToStudentiViewModel();
+            return View(conversione);
+        }
+        [HttpPost]
+        public IActionResult Delete(StudenteViewModel studenteViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var studente = studenteViewModel.ToStudenti();
+                BL.EliminaStudente(studente.ID);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(studenteViewModel);
+        }
+        #endregion
     }
 }
