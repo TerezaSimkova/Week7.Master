@@ -30,6 +30,14 @@ namespace Week7.Master.MVC.Controllers
 
             return View(lezioneViewModels);
         }
+        [HttpGet("Lezioni/Details/{id}")] //-> devi specificare il percorso se cambio la variabile nella entrata
+        public IActionResult Details(int id)
+        {
+            var lezioni = BL.GetAllLezioni().FirstOrDefault(c => c.LezioneID == id);
+
+            var lezioneViewModel = lezioni.ToLezioniViewModel();
+            return View(lezioneViewModel);
+        }
         #region Create
         [HttpGet]
         public IActionResult Create()

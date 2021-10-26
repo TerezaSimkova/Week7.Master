@@ -13,6 +13,11 @@ namespace Week7.Master.MVC.Helper
         //trasforma corso view model
         public static CorsoViewModel ToCorsoViewModel(this Corso corso) //corso e classe che sta estendendo
         {
+            List<StudenteViewModel> studentiViewModel = new List<StudenteViewModel>();
+            foreach (var item in corso.Studenti)
+            {
+                studentiViewModel.Add(item?.ToStudentiViewModel());
+            }
             //Oggetto per la visualizazzione
             return new CorsoViewModel
             {
@@ -20,21 +25,26 @@ namespace Week7.Master.MVC.Helper
                 //sto trasformando CORSO in CorsoViewModel 
                 CodiceCorso = corso.CodiceCorso,
                 Nome = corso.Nome,
-                Descrizione = corso.Descrizione
+                Descrizione = corso.Descrizione,
+                Studenti = studentiViewModel
             };
         }
 
         //il contrario -> estensione del Corso view model
         public static Corso ToCorso(this CorsoViewModel corsoViewModel)
         {
+            List<Studente> studenti = new List<Studente>();
+            foreach (var item in corsoViewModel.Studenti)
+            {
+                studenti.Add(item?.ToStudenti());
+            }
             return new Corso
             {
-
                 CodiceCorso = corsoViewModel.CodiceCorso,
                 Nome = corsoViewModel.Nome,
                 Descrizione = corsoViewModel.Descrizione,
-                //Studenti = null,
-                //Lezioni = null
+                Studenti = studenti,
+                //Lezioni = lezioni ->lista da creare
             };
         }
 
@@ -70,7 +80,8 @@ namespace Week7.Master.MVC.Helper
                 Cognome = studente.Cognome,
                 Email = studente.Email,
                 DataDiNascita = studente.DataDiNascita,
-                TitoloStudio = studente.TitoloStudio
+                TitoloStudio = studente.TitoloStudio,
+                CorsoCodice = studente.CorsoCodice
             };
         }
 
@@ -83,7 +94,8 @@ namespace Week7.Master.MVC.Helper
                 Cognome = studenteViewModel.Cognome,
                 Email = studenteViewModel.Email,
                 DataDiNascita = studenteViewModel.DataDiNascita,
-                TitoloStudio = studenteViewModel.TitoloStudio
+                TitoloStudio = studenteViewModel.TitoloStudio,
+                CorsoCodice = studenteViewModel.CorsoCodice
             };
         }
 
@@ -91,9 +103,12 @@ namespace Week7.Master.MVC.Helper
         {
             return new LezioneViewModel
             {
-                 Aula = lezione.Aula,
-                 DataOraInizio = lezione.DataOraInizio,
-                 Durata = lezione.Durata
+                LezioneID = lezione.LezioneID,
+                Aula = lezione.Aula,
+                DataOraInizio = lezione.DataOraInizio,
+                DocenteID= lezione.DocenteID,
+                CorsoCodice = lezione.CorsoCodice,
+                Durata = lezione.Durata
             };
         }
 
@@ -101,8 +116,11 @@ namespace Week7.Master.MVC.Helper
         {
             return new Lezione
             {
+                LezioneID = lezioneViewModel.LezioneID,
                 Aula = lezioneViewModel.Aula,
                 DataOraInizio = lezioneViewModel.DataOraInizio,
+                DocenteID = lezioneViewModel.DocenteID,
+                CorsoCodice = lezioneViewModel.CorsoCodice,
                 Durata = lezioneViewModel.Durata
             };
         }

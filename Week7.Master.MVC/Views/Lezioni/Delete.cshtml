@@ -1,5 +1,41 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@*Delete Lezione*@
+
+@model LezioneViewModel
+
+<h1>Sei sicuro di voler eliminare questa lezione ?</h1>
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="LezioneID" hidden></label>
+        <input asp-for="LezioneID" class="form-control" hidden />
+        <span asp-validation-for="LezioneID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Aula"></label>
+        <input asp-for="Aula" class="form-control" readonly />
+        <span asp-validation-for="Aula" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DataOraInizio"></label>
+        <input asp-for="DataOraInizio" class="form-control" readonly />
+        <span asp-validation-for="DataOraInizio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Durata"></label>
+        <input asp-for="Durata" class="form-control" readonly />
+        <span asp-validation-for="Durata" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CorsoCodice"></label>
+        <input asp-for="CorsoCodice" class="form-control" readonly />
+        <span asp-validation-for="CorsoCodice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DocenteID"></label>
+        <input asp-for="DocenteID" class="form-control" readonly />
+        <span asp-validation-for="DocenteID" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Si,elimina" class="btn btn-danger" />
+    <a class="btn btn-primary" asp-controller="Corsi" asp-action="Index" role="button">Indietro</a>
+</form>

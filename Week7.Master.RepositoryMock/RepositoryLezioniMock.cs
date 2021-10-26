@@ -31,7 +31,7 @@ namespace Week7.Master.RepositoryMock
             lezione.Docente = docente;
             var corso = RepositoryCorsiMock.Corsi.FirstOrDefault(c => c.CodiceCorso == lezione.CorsoCodice);
             lezione.Corso = corso;
-
+            lezione.Docente = docente;
             docente.Lezioni.Add(lezione);
             corso.Lezioni.Add(lezione);
 
