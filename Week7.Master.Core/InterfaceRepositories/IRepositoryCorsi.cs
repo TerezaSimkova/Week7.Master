@@ -10,5 +10,6 @@ namespace Week7.Master.Core.InterfaceRepositories
     public interface IRepositoryCorsi : IRepository<Corso>
     {
         public Corso GetByCode(string code); // vale solo per corso perche ha un id diverso - string no int 
+        Corso GetByName(string nomeCorso);
     }
 }

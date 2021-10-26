@@ -1,2 +1,21 @@
 ﻿<h1> Pagina di prova</h1>
 <p>Questo e soltanto una prova!</p>
+
+<h3>Dati della mia view bag -></h3>
+
+@*Partial view*@
+<partial name="_PezzoSempreUguale" />
+@*<partial name="_PezzoSempreUguale" model="Model"/>  -> se ce anche model nella partial view*@
+
+@{ ViewBag.AltraVariabile = "Ciao questa stringa e contenuta in Altra variabile";}
+
+@*accedere alla viewbag*@
+<p>@ViewBag.Messaggio</p>
+<p>@ViewBag.Valore</p>
+<p>@ViewBag.AltraVariabile</p>
+<br />
+@*accedere a view data*@
+<h3>Dati della view data -></h3>
+<p>@ViewData["MessaggioVD"]</p>
+
+

@@ -61,6 +61,11 @@ namespace Week7.Master.RepositoryMock
             return Lezioni.Find(l => l.LezioneID == id);
         }
 
+        public List<Lezione> GetLezioniDelCorso(string codice)
+        {
+            return Lezioni.Where(l => l.CorsoCodice == codice).ToList();
+        }
+
         public Lezione Update(Lezione lezione)
         {
             var old = Lezioni.FirstOrDefault(l => l.LezioneID == lezione.LezioneID);

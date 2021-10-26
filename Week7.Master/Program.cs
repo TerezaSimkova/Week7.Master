@@ -113,7 +113,7 @@ namespace Week7.Master
                     VisualizzaLezioneConCodiceCorso();
                     break;
                 case 14:
-                    //VisualizzaLezionePerIlNomeCorso();
+                    VisualizzaLezionePerIlNomeCorso();
                     break;
                 case 15:
                     VisualizzaStudenti();
@@ -134,6 +134,19 @@ namespace Week7.Master
                     return false;
             }
             return true;
+        }
+
+        private static void VisualizzaLezionePerIlNomeCorso()
+        {
+            VisualizzaCorsi();
+            string nomeCorso = string.Empty;
+            do
+            {
+                Console.WriteLine("Scegli nome del corso per visualizzare le lezioni che gli appartengono:");
+
+            } while (string.IsNullOrEmpty(nomeCorso));
+            var esito = bl.VisualizzaLezioniDelCorso(nomeCorso);
+            Console.WriteLine(esito);
         }
 
         private static void VisualizzaLezioneConCodiceCorso()

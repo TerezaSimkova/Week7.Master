@@ -48,6 +48,11 @@ namespace Week7.Master.RepositoryEF.Configurations.RepositoryEF
             }
         }
 
+        public Corso GetByName(string nomeCorso)
+        {
+            throw new NotImplementedException();
+        }
+
         public Corso Update(Corso corso)
         {
             using (var ctx = new MasterContext())

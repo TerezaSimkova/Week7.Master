@@ -2,6 +2,9 @@
 
 <h1>Ecco la lista dei corsi:</h1>
 <br />
+<h2>Per inserire nuovo corso -></h2>
+<a class="btn btn-success" asp-controller="Corsi" asp-action="Create" type="button">New Corso</a>
+<br />
 <table class="table table-bordered">
     <thead class="table table-dark">
         <tr>
@@ -20,6 +23,8 @@
                 @*<td>@item.Descrizione</td>*@
                 <th>
                 <a asp-controller="Corsi" asp-action="Details" asp-route-id="@item.CodiceCorso" class="btn btn-success">Visualizza Dattagli</a>
+                <a asp-controller="Corsi" asp-action="Update" asp-route-id="@item.CodiceCorso" class="btn btn-outline-warning">Update</a>
+                <a asp-controller="Corsi" asp-action="Delete" asp-route-id="@item.CodiceCorso" class="btn btn-outline-danger">Delete</a>
                 </th>
             </tr>
         }

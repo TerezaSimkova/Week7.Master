@@ -2,6 +2,9 @@
 
 <h1>Ecco la lista degli docenti:</h1>
 <br />
+<h2>Per inserire nuovo docente-></h2>
+<a class="btn btn-success" asp-controller="Docenti" asp-action="Create" type="button">New Docente</a>
+<br />
 <table class="table table-bordered">
     <thead class="table table-dark">
         <tr>
@@ -9,6 +12,7 @@
             <th>Cognome</th>
             <th>E-mail</th>
             <th>Telefono</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +23,10 @@
                 <td>@item.Cognome</td>
                 <td>@item.Email</td>
                 <td>@item.Telefono</td>
+                <td>
+                    <a asp-controller="Docenti" asp-action="Update" asp-route-id="@item.ID" class="btn btn-outline-warning">Update</a>
+                    <a asp-controller="Docenti" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-outline-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

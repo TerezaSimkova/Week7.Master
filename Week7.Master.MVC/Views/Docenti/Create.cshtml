@@ -1,0 +1,16 @@
+﻿@model DocenteViewModel
+
+<h1>Inserisci nuovo docente:</h1>
+<form method="post">
+
+    <partial name="_UpdatePartial" model="Model" />
+    <div class="form-group">
+        <label asp-for="Telefono"></label>
+        <input asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Salva" class="btn btn-warning" />
+    <input type="reset" value="Reset" class="btn btn-success" />
+    <a class="btn btn-primary" asp-controller="Corsi" asp-action="Index" role="button">Indietro</a>
+</form>

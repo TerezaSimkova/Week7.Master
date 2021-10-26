@@ -50,6 +50,7 @@ namespace Week7.Master.Core.BusinessLayer
         public string ModificaLezione(int idLezione, string aula);
         public string EliminaLezione(int lezioneDaEliminare);
         public List<Lezione> VisualizzaLezioneConCodiceCorso(string codiceCorso);
+        public List<Lezione> VisualizzaLezioniDelCorso(string nomeCorso);
         #endregion
     }
 }

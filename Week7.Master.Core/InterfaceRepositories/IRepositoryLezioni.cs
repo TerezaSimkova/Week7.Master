@@ -11,5 +11,6 @@ namespace Week7.Master.Core.InterfaceRepositories
     {
         public Lezione GetById(int id);
         List<Lezione> GetByCorsoCodice(string codiceCorso);
+        List<Lezione> GetLezioniDelCorso(string nome);
     }
 }

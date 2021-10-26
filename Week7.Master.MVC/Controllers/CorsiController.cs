@@ -18,7 +18,8 @@ namespace Week7.Master.MVC.Controllers
         {
             BL = bl;
         }
-
+        
+        #region Fetch all corsi + details
         //CRUD del corso + API
         //url: http://localhost:44338/Home/Corsi
 
@@ -48,5 +49,67 @@ namespace Week7.Master.MVC.Controllers
             var corsoViewModel = corso.ToCorsoViewModel();
             return View(corsoViewModel);
         }
+        #endregion
+
+        #region Create
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View(); //->torna form vuoto
+        }
+        [HttpPost]
+        public IActionResult Create(CorsoViewModel corsoViewModel) //uso lo stesso nome perche in caso di inserimento va in coppia
+        {
+            if (ModelState.IsValid) //controllo
+            {
+                var corso = corsoViewModel.ToCorso(); // ->converto in corso cosi lo posso connettere con BL 
+                BL.InserisciNuovoCorso(corso);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(corsoViewModel); //-> grazie questo se ce un errore mi memorizza i dati e da errore ,se non ce torna  il form vuoto
+        }
+        #endregion
+
+        #region Update
+        [HttpGet]
+        public IActionResult Update(string id)
+        {
+            var corso = BL.GetAllCorsi().Find(c => c.CodiceCorso == id);
+            var conversione = corso.ToCorsoViewModel();
+            return View(conversione);
+        }
+        [HttpPost]
+        public IActionResult Update(CorsoViewModel corsoViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var corso = corsoViewModel.ToCorso();
+                BL.ModificaCorso(corso.CodiceCorso, corso.Nome, corso.Descrizione);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(corsoViewModel);
+        }
+        #endregion
+
+        #region Delete
+        [HttpGet]
+        public IActionResult Delete(string id)
+        {
+            var corso = BL.GetAllCorsi().Find(c => c.CodiceCorso == id);
+            var corsoViewModel = corso.ToCorsoViewModel();
+            return View(corsoViewModel);
+        }
+        [HttpPost]
+        public IActionResult Delete(CorsoViewModel corsoViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var corso = corsoViewModel.ToCorso();
+                BL.EliminaCorso(corso.CodiceCorso);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(corsoViewModel);
+        }
+        #endregion
     }
 }

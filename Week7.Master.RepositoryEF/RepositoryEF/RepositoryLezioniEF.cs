@@ -52,6 +52,11 @@ namespace Week7.Master.RepositoryEF.Configurations.RepositoryEF
             }
         }
 
+        public List<Lezione> GetLezioniDelCorso(string nome)
+        {
+            throw new NotImplementedException();
+        }
+
         public Lezione Update(Lezione lezione)
         {
             using (var ctx = new MasterContext())

@@ -40,6 +40,12 @@ namespace Week7.Master.RepositoryMock
            // return Corsi.FirstOrDefault(c => c.CodiceCorso == code); -->lo stesso
         }
 
+        public Corso GetByName(string nomeCorso)
+        {
+            Corso corso = Corsi.Find(c => c.Nome == nomeCorso);
+            return corso;
+        }
+
         public Corso Update(Corso corso)
         {
             var old =  Corsi.FirstOrDefault(c => c.CodiceCorso == corso.CodiceCorso);
